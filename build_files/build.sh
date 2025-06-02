@@ -114,10 +114,7 @@ mv color-scheme /usr/bin
 rm color-scheme-x86_64-unknown-linux-gnu.zip
  
 # cli-dungeon
-wget https://github.com/SofusA/cli-dungeon/releases/latest/download/cli-dungeon-x86_64-unknown-linux-gnu.zip
-unzip cli-dungeon-x86_64-unknown-linux-gnu.zip
-mv cli-dungeon /usr/bin
-rm cli-dungeon-x86_64-unknown-linux-gnu.zip
+cargo install --root /usr --git https://github.com/sofusa/cli-dungeon
 
 # Playwright dependencies
 dnf5 install -yq libjpeg-turbo libwebp libffi libicu
