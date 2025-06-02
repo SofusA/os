@@ -97,7 +97,7 @@ rm -rf helix
 
 # Desktop
 dnf5 -y copr enable yalter/niri-git
-dnf5 install -yq niri wl-clipboard swayidle
+dnf5 install -yq niri wl-clipboard swayidle mako
 
 # Qobuz player
 dnf5 install -yq rust-glib-sys-devel rust-gstreamer-devel # Qobuz player dependencies
