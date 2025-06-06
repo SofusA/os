@@ -113,9 +113,6 @@ unzip color-scheme-x86_64-unknown-linux-gnu.zip
 mv color-scheme /usr/bin
 rm color-scheme-x86_64-unknown-linux-gnu.zip
  
-# cli-dungeon
-cargo install --root /usr --git https://github.com/sofusa/cli-dungeon
-
 # Playwright dependencies
 dnf5 install -yq libjpeg-turbo libwebp libffi libicu
 
