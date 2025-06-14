@@ -72,10 +72,6 @@ rm bicep-langserver.zip
 dnf5 install -yq zoxide atuin fd-find ripgrep skim
 cargo binstall -yq --root /usr sd eza zellij ccase
 cargo binstall -yq --strategies crate-meta-data --root /usr yazi-cli
-# cargo install --root /usr --git https://github.com/facundoolano/rpg-cli
-wget https://github.com/facundoolano/rpg-cli/releases/download/1.2.0/rpg-cli-1.2.0-linux
-chmod +x rpg-cli-1.2.0-linux
-mv rpg-cli-1.2.0-linux /usr/bin/rpg-cli
 
 # Git
 dnf5 -y copr enable vdanielmo/git-credential-manager
