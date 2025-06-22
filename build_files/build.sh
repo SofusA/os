@@ -20,6 +20,12 @@ dnf5 install -yq cargo rust-analyzer rustfmt clippy
 export CARGO_HOME=/tmp/cargo
 mkdir -p "$CARGO_HOME"
 
+# cli-dungeon
+wget https://github.com/SofusA/cli-dungeon/releases/latest/download/cli-dungeon-x86_64-unknown-linux-gnu.tar.gz
+tar -xf cli-dungeon-x86_64-unknown-linux-gnu.tar.gz
+mv cli-dungeon /usr/bin
+rm cli-dungeon-x86_64-unknown-linux-gnu.tar.gz
+
 # Cargo binstall
 curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
 
