@@ -88,7 +88,7 @@ cargo binstall -yq --root /usr lazyjj
 cargo binstall -yq --root /usr --strategies crate-meta-data jj-cli
 
 # Helix
-cargo install --git https://github.com/nik-rev/patchy
+cargo install --root /usr --git https://github.com/nik-rev/patchy
 dnf5 install -yq clang
 export HELIX_DEFAULT_RUNTIME=/usr/lib/helix/runtime
 mkdir -p "$HELIX_DEFAULT_RUNTIME"
