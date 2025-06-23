@@ -88,16 +88,19 @@ cargo binstall -yq --root /usr lazyjj
 cargo binstall -yq --root /usr --strategies crate-meta-data jj-cli
 
 # Helix
+cargo install --git https://github.com/nik-rev/patchy
 dnf5 install -yq clang
 export HELIX_DEFAULT_RUNTIME=/usr/lib/helix/runtime
 mkdir -p "$HELIX_DEFAULT_RUNTIME"
-git clone -b pull-diagnostics https://github.com/SofusA/helix-pull-diagnostics.git
-cd helix-pull-diagnostics
+# git clone -b pull-diagnostics https://github.com/SofusA/helix-pull-diagnostics.git
+git clone https://github.com/SofusA/helix-driver
+cd helix-driver
+patchy run --yes
 cargo build --profile opt --locked
 cp -r runtime /usr/lib/helix/
 cp target/opt/hx /usr/bin/hx
 cd ..
-rm -rf helix
+rm -rf helix-dirver
 
 # Desktop
 dnf5 -y copr enable yalter/niri-git
