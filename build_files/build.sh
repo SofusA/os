@@ -89,6 +89,8 @@ cargo binstall -yq --root /usr --strategies crate-meta-data jj-cli
 
 # Helix
 cargo install --root /usr --git https://github.com/nik-rev/patchy
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
 dnf5 install -yq clang
 export HELIX_DEFAULT_RUNTIME=/usr/lib/helix/runtime
 mkdir -p "$HELIX_DEFAULT_RUNTIME"
