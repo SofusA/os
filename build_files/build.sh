@@ -10,6 +10,9 @@ mkdir -p $(realpath /usr/local)
 dnf5 -y copr enable che/nerd-fonts
 dnf5 install -yq nerd-fonts
 
+dnf5 -y remove ncurses-term
+dnf5 -y install $(curl -s https://api.github.com/repos/raphamorim/rio/releases/latest | jq -r '.assets[] | select(.name | test("^rioterm-.*x86_64_wayland.rpm$")).browser_download_url')
+
 # Node
 dnf5 install -yq npm
 npm config --global set prefix "/usr"
@@ -77,14 +80,16 @@ rm bicep-langserver.zip
 # Shell
 dnf5 install -yq zoxide atuin fd-find ripgrep skim
 cargo binstall -yq --root /usr sd eza zellij ccase
-cargo binstall -yq --strategies crate-meta-data --root /usr yazi-cli
+dnf5 -y copr enable lihaohong/yazi
+dnf5 -yq install yazi
+cargo install --root /usr --git https://github.com/SofusA/color-scheme
+dnf5 -yq install cowsay kitty
 
 # Git
 dnf5 -y copr enable vdanielmo/git-credential-manager
 dnf5 install -yq git-credential-manager
 
 dnf5 install -yq gh meld
-cargo binstall -yq --root /usr lazyjj 
 cargo binstall -yq --root /usr --strategies crate-meta-data jj-cli
 
 # Helix
