@@ -6,9 +6,6 @@ mkdir -p $(realpath /root)
 mkdir -p $(realpath /opt)
 mkdir -p $(realpath /usr/local)
 
-rm /usr/share/terminfo/r/rio
-dnf5 -y install $(curl -s https://api.github.com/repos/raphamorim/rio/releases/latest | jq -r '.assets[] | select(.name | test("^rioterm-.*x86_64_wayland.rpm$")).browser_download_url')
-
 # Node
 dnf5 install -yq npm
 npm config --global set prefix "/usr"
