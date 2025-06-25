@@ -78,7 +78,7 @@ chmod +x /usr/bin/bicep-langserver
 rm bicep-langserver.zip
 
 # Shell
-dnf5 install -yq zoxide atuin fd-find ripgrep skim
+dnf5 install -yq zoxide atuin fd-find ripgrep skim fish
 cargo binstall -yq --root /usr sd eza zellij ccase
 dnf5 -y copr enable lihaohong/yazi
 dnf5 -yq install yazi
@@ -91,6 +91,11 @@ dnf5 install -yq git-credential-manager
 
 dnf5 install -yq gh meld
 cargo binstall -yq --root /usr --strategies crate-meta-data jj-cli
+
+wget $(curl -s https://api.github.com/repos/Cretezy/lazyjj/releases/latest | jq -r '.assets[] | select(.name | test(".*linux")).browser_download_url')
+tar -xf lazyjj*tar.gz
+mv lazyjj /usr/bin
+rm lazyjj*tar.gz
 
 # Helix
 cargo install --root /usr --git https://github.com/nik-rev/patchy
