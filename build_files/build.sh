@@ -6,11 +6,7 @@ mkdir -p $(realpath /root)
 mkdir -p $(realpath /opt)
 mkdir -p $(realpath /usr/local)
 
-# Fonts
-dnf5 -y copr enable che/nerd-fonts
-dnf5 install -yq nerd-fonts
-
-dnf5 -y remove ncurses-term
+rm /usr/share/terminfo/r/rio
 dnf5 -y install $(curl -s https://api.github.com/repos/raphamorim/rio/releases/latest | jq -r '.assets[] | select(.name | test("^rioterm-.*x86_64_wayland.rpm$")).browser_download_url')
 
 # Node
@@ -78,7 +74,7 @@ chmod +x /usr/bin/bicep-langserver
 rm bicep-langserver.zip
 
 # Shell
-dnf5 install -yq zoxide atuin fd-find ripgrep skim fish
+dnf5 install -yq zoxide atuin fd-find ripgrep skim
 cargo binstall -yq --root /usr sd eza zellij ccase
 dnf5 -y copr enable lihaohong/yazi
 dnf5 -yq install yazi
