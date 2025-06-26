@@ -6,6 +6,9 @@ mkdir -p $(realpath /root)
 mkdir -p $(realpath /opt)
 mkdir -p $(realpath /usr/local)
 
+dnf5 -y copr enable scottames/ghostty
+dnf5 install -yq ghostty
+
 # Node
 dnf5 install -yq npm
 npm config --global set prefix "/usr"
