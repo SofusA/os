@@ -114,6 +114,11 @@ rm -rf helix-dirver
 dnf5 -y copr enable yalter/niri-git
 dnf5 install -yq niri wl-clipboard swayidle mako
 
+# Remove rust and install rustup instead
+dnf5 remove -yq cargo rust-analyzer rustfmt clippy
+dnf5 install -yq rustup
+dnf5 -y autoremove
+
 # Qobuz player
 dnf5 install -yq rust-glib-sys-devel rust-gstreamer-devel # Qobuz player dependencies
 # cargo install --root /usr --git https://github.com/sofusa/qobuz-player
@@ -131,9 +136,5 @@ rm color-scheme-x86_64-unknown-linux-gnu.zip
 # Playwright dependencies
 dnf5 install -yq libjpeg-turbo libwebp libffi libicu
 
-# Remove rust and install rustup instead
-dnf5 remove -yq cargo rust-analyzer rustfmt clippy
-dnf5 install -yq rustup
-dnf5 -y autoremove
 
 systemctl enable podman.socket
