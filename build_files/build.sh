@@ -103,7 +103,7 @@ mkdir -p "$HELIX_DEFAULT_RUNTIME"
 # git clone -b pull-diagnostics https://github.com/SofusA/helix-pull-diagnostics.git
 git clone https://github.com/SofusA/helix-driver
 cd helix-driver
-patchy run --yes
+patchy run --confirm yes
 cargo build --profile opt --locked
 cp -r runtime /usr/lib/helix/
 cp target/opt/hx /usr/bin/hx
