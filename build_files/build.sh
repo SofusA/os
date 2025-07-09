@@ -38,12 +38,12 @@ npm i -gq --prefix /usr azure-functions-core-tools
 wget -qO- https://aka.ms/install-artifacts-credprovider.sh | bash
  
 # csharp
-# cargo install --root /usr --git https://github.com/SofusA/csharp-language-server
-wget https://github.com/SofusA/csharp-language-server/releases/latest/download/csharp-language-server-x86_64-unknown-linux-gnu.zip
-unzip csharp-language-server-x86_64-unknown-linux-gnu.zip
-mv csharp-language-server /usr/bin
-rm csharp-language-server-x86_64-unknown-linux-gnu.zip 
-mkdir -p /usr/lib/csharp-language-server
+# wget https://github.com/SofusA/csharp-language-server/releases/latest/download/csharp-language-server-x86_64-unknown-linux-gnu.zip
+# unzip csharp-language-server-x86_64-unknown-linux-gnu.zip
+# mv csharp-language-server /usr/bin
+# rm csharp-language-server-x86_64-unknown-linux-gnu.zip 
+# mkdir -p /usr/lib/csharp-language-server
+cargo install --root /usr --git https://github.com/SofusA/csharp-language-server
 csharp-language-server --download --directory /usr/lib/csharp-language-server
 
 # vscode
@@ -121,11 +121,11 @@ dnf5 -y autoremove
 
 # Qobuz player
 dnf5 install -yq rust-glib-sys-devel rust-gstreamer-devel # Qobuz player dependencies
-# cargo install --root /usr --git https://github.com/sofusa/qobuz-player
-wget https://github.com/SofusA/qobuz-player/releases/latest/download/qobuz-player-x86_64-unknown-linux-gnu.tar.gz
-tar -xf qobuz-player-x86_64-unknown-linux-gnu.tar.gz
-mv qobuz-player /usr/bin
-rm qobuz-player-x86_64-unknown-linux-gnu.tar.gz
+cargo install --root /usr --locked --git https://github.com/sofusa/qobuz-player 
+# wget https://github.com/SofusA/qobuz-player/releases/latest/download/qobuz-player-x86_64-unknown-linux-gnu.tar.gz
+# tar -xf qobuz-player-x86_64-unknown-linux-gnu.tar.gz
+# mv qobuz-player /usr/bin
+# rm qobuz-player-x86_64-unknown-linux-gnu.tar.gz
  
 # color-scheme
 wget https://github.com/SofusA/color-scheme/releases/latest/download/color-scheme-x86_64-unknown-linux-gnu.zip
