@@ -29,7 +29,7 @@ rm cli-dungeon-x86_64-unknown-linux-gnu.tar.gz
 curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
 
 # Dotnet
-dnf5 install -yq dotnet-sdk-9.0 aspnetcore-runtime-9.0 azure-cli
+dnf5 install -yq dotnet-sdk-9.0 dotnet-sdk-8.0 aspnetcore-runtime-9.0 azure-cli
 
 DOTNET_CLI_HOME=/usr/lib/dotnet
 mkdir -p "$DOTNET_CLI_HOME"
