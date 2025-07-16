@@ -63,7 +63,10 @@ ln -s /usr/lib/powershell/7/pwsh /usr/bin/pwsh
 # Language servers
 npm i -gq --prefix /usr prettier @tailwindcss/language-server vscode-langservers-extracted typescript-language-server typescript
 npm i -gq --prefix /usr @angular/cli @angular/language-service typescript @angular/language-server
-cargo binstall -yq --root /usr --git https://github.com/tekumara/typos-lsp typos-lsp
+wget $(curl -s https://api.github.com/repos/tekumara/typos-lsp/releases/latest | jq -r '.assets[] | select(.name | test(".*x86_64-unknown-linux-gnu")).browser_download_url')
+tar -xf typos-lsp*tar.gz
+mv typos-lsp /usr/bin
+rm typos-lsp*tar.gz
 cargo binstall -yq --root /usr leptosfmt
 
 ## Bicep language server
