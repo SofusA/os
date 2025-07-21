@@ -18,12 +18,25 @@ dnf5 install -yq cargo rust-analyzer rustfmt clippy
 
 export CARGO_HOME=/tmp/cargo
 mkdir -p "$CARGO_HOME"
+ 
+# Steel
+dnf5 install -yq rust-openssl-sys-devel
+git clone https://github.com/mattwparas/steel.git
+cd steel
+cargo install --root /usr --path .
+cargo install --root /usr --path crates/steel-language-server
+cargo install --root /usr --path crates/cargo-steel-lib
+OPENSSL_NO_VENDOR=1 cargo install --root /usr --path crates/forge
+cd cogs
+cargo run -- install.scm
+cd ../..
+rm -rf steel
 
 # cli-dungeon
-wget https://github.com/SofusA/cli-dungeon/releases/latest/download/cli-dungeon-x86_64-unknown-linux-gnu.tar.gz
-tar -xf cli-dungeon-x86_64-unknown-linux-gnu.tar.gz
-mv cli-dungeon /usr/bin
-rm cli-dungeon-x86_64-unknown-linux-gnu.tar.gz
+# wget https://github.com/SofusA/cli-dungeon/releases/latest/download/cli-dungeon-x86_64-unknown-linux-gnu.tar.gz
+# tar -xf cli-dungeon-x86_64-unknown-linux-gnu.tar.gz
+# mv cli-dungeon /usr/bin
+# rm cli-dungeon-x86_64-unknown-linux-gnu.tar.gz
 
 # Cargo binstall
 curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
@@ -38,12 +51,12 @@ npm i -gq --prefix /usr azure-functions-core-tools
 wget -qO- https://aka.ms/install-artifacts-credprovider.sh | bash
  
 # csharp
-# wget https://github.com/SofusA/csharp-language-server/releases/latest/download/csharp-language-server-x86_64-unknown-linux-gnu.zip
-# unzip csharp-language-server-x86_64-unknown-linux-gnu.zip
-# mv csharp-language-server /usr/bin
-# rm csharp-language-server-x86_64-unknown-linux-gnu.zip 
-# mkdir -p /usr/lib/csharp-language-server
-cargo install --root /usr --git https://github.com/SofusA/csharp-language-server
+wget https://github.com/SofusA/csharp-language-server/releases/latest/download/csharp-language-server-x86_64-unknown-linux-gnu.zip
+unzip csharp-language-server-x86_64-unknown-linux-gnu.zip
+mv csharp-language-server /usr/bin
+rm csharp-language-server-x86_64-unknown-linux-gnu.zip 
+mkdir -p /usr/lib/csharp-language-server
+# cargo install --root /usr --git https://github.com/SofusA/csharp-language-server
 csharp-language-server --download --directory /usr/lib/csharp-language-server
 
 # vscode
@@ -81,7 +94,6 @@ dnf5 install -yq zoxide atuin fd-find ripgrep skim
 cargo binstall -yq --root /usr sd eza zellij ccase
 dnf5 -y copr enable lihaohong/yazi
 dnf5 -yq install yazi
-cargo install --root /usr --git https://github.com/SofusA/color-scheme
 dnf5 -yq install cowsay kitty
 
 # Git
@@ -124,11 +136,11 @@ dnf5 -y autoremove
 
 # Qobuz player
 dnf5 install -yq rust-glib-sys-devel rust-gstreamer-devel # Qobuz player dependencies
-cargo install --root /usr --locked --git https://github.com/sofusa/qobuz-player 
-# wget https://github.com/SofusA/qobuz-player/releases/latest/download/qobuz-player-x86_64-unknown-linux-gnu.tar.gz
-# tar -xf qobuz-player-x86_64-unknown-linux-gnu.tar.gz
-# mv qobuz-player /usr/bin
-# rm qobuz-player-x86_64-unknown-linux-gnu.tar.gz
+# cargo install --root /usr --locked --git https://github.com/sofusa/qobuz-player 
+wget https://github.com/SofusA/qobuz-player/releases/latest/download/qobuz-player-x86_64-unknown-linux-gnu.tar.gz
+tar -xf qobuz-player-x86_64-unknown-linux-gnu.tar.gz
+mv qobuz-player /usr/bin
+rm qobuz-player-x86_64-unknown-linux-gnu.tar.gz
  
 # color-scheme
 wget https://github.com/SofusA/color-scheme/releases/latest/download/color-scheme-x86_64-unknown-linux-gnu.zip
