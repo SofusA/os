@@ -20,17 +20,17 @@ export CARGO_HOME=/tmp/cargo
 mkdir -p "$CARGO_HOME"
  
 # Steel
-dnf5 install -yq rust-openssl-sys-devel
-git clone https://github.com/mattwparas/steel.git
-cd steel
-cargo install --root /usr --path .
-cargo install --root /usr --path crates/steel-language-server
-cargo install --root /usr --path crates/cargo-steel-lib
-OPENSSL_NO_VENDOR=1 cargo install --root /usr --path crates/forge
-cd cogs
-cargo run -- install.scm
-cd ../..
-rm -rf steel
+# dnf5 install -yq rust-openssl-sys-devel
+# git clone https://github.com/mattwparas/steel.git
+# cd steel
+# cargo install --root /usr --path .
+# cargo install --root /usr --path crates/steel-language-server
+# cargo install --root /usr --path crates/cargo-steel-lib
+# OPENSSL_NO_VENDOR=1 cargo install --root /usr --path crates/forge
+# cd cogs
+# cargo run -- install.scm
+# cd ../..
+# rm -rf steel
 
 # cli-dungeon
 # wget https://github.com/SofusA/cli-dungeon/releases/latest/download/cli-dungeon-x86_64-unknown-linux-gnu.tar.gz
