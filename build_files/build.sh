@@ -76,7 +76,8 @@ ln -s /usr/lib/powershell/7/pwsh /usr/bin/pwsh
 # Language servers
 npm i -gq --prefix /usr prettier @tailwindcss/language-server vscode-langservers-extracted typescript-language-server typescript
 npm i -gq --prefix /usr @angular/cli @angular/language-service typescript @angular/language-server
-wget $(curl -s https://api.github.com/repos/tekumara/typos-lsp/releases/latest | jq -r '.assets[] | select(.name | test(".*x86_64-unknown-linux-gnu")).browser_download_url')
+# wget $(curl -s https://api.github.com/repos/tekumara/typos-lsp/releases/latest | jq -r '.assets[] | select(.name | test(".*x86_64-unknown-linux-gnu")).browser_download_url')
+wget https://github.com/tekumara/typos-lsp/releases/download/v0.1.40/typos-lsp-v0.1.40-x86_64-unknown-linux-gnu.tar.gz
 tar -xf typos-lsp*tar.gz
 mv typos-lsp /usr/bin
 rm typos-lsp*tar.gz
@@ -109,21 +110,23 @@ mv lazyjj /usr/bin
 rm lazyjj*tar.gz
 
 # Helix
-cargo install --root /usr --git https://github.com/nik-rev/patchy
-git config --global user.email "you@example.com"
-git config --global user.name "Your Name"
+# cargo install --root /usr --git https://github.com/nik-rev/patchy
+# git config --global user.email "you@example.com"
+# git config --global user.name "Your Name"
 dnf5 install -yq clang
 export HELIX_DEFAULT_RUNTIME=/usr/lib/helix/runtime
 mkdir -p "$HELIX_DEFAULT_RUNTIME"
-# git clone -b pull-diagnostics https://github.com/SofusA/helix-pull-diagnostics.git
-git clone https://github.com/SofusA/helix-driver
-cd helix-driver
-patchy run --confirm yes
+git clone -b pull-diagnostics https://github.com/SofusA/helix-pull-diagnostics.git
+# git clone https://github.com/SofusA/helix-driver
+# cd helix-driver
+cd helix-pull-diagnostics
+# patchy run --confirm yes
 cargo build --profile opt --locked
 cp -r runtime /usr/lib/helix/
 cp target/opt/hx /usr/bin/hx
 cd ..
-rm -rf helix-dirver
+rm -rf helix-pull-diagnostics
+# rm -rf helix-dirver
 
 # Desktop
 dnf5 -y copr enable yalter/niri-git
@@ -135,7 +138,7 @@ dnf5 install -yq rustup
 dnf5 -y autoremove
 
 # Qobuz player
-dnf5 install -yq rust-glib-sys-devel rust-gstreamer-devel # Qobuz player dependencies
+# dnf5 install -yq rust-glib-sys-devel rust-gstreamer-devel # Qobuz player dependencies
 # cargo install --root /usr --locked --git https://github.com/sofusa/qobuz-player 
 wget https://github.com/SofusA/qobuz-player/releases/latest/download/qobuz-player-x86_64-unknown-linux-gnu.tar.gz
 tar -xf qobuz-player-x86_64-unknown-linux-gnu.tar.gz
@@ -150,6 +153,5 @@ rm color-scheme-x86_64-unknown-linux-gnu.zip
  
 # Playwright dependencies
 dnf5 install -yq libjpeg-turbo libwebp libffi libicu
-
 
 systemctl enable podman.socket
