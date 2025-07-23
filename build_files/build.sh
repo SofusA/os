@@ -96,6 +96,7 @@ cargo binstall -yq --root /usr sd eza zellij ccase
 dnf5 -y copr enable lihaohong/yazi
 dnf5 -yq install yazi
 dnf5 -yq install cowsay kitty
+dnf5 -yq install sudo-rs uutils-coreutils
 
 # Git
 dnf5 -y copr enable vdanielmo/git-credential-manager
