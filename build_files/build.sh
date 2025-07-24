@@ -92,7 +92,7 @@ rm bicep-langserver.zip
 
 # Shell
 dnf5 install -yq zoxide atuin fd-find ripgrep skim
-cargo binstall -yq --root /usr sd eza zellij ccase
+cargo binstall -yq --root /usr sd eza ccase
 dnf5 -y copr enable lihaohong/yazi
 dnf5 -yq install yazi
 dnf5 -yq install cowsay kitty
@@ -139,7 +139,7 @@ dnf5 install -yq rustup
 dnf5 -y autoremove
 
 # Qobuz player
-# dnf5 install -yq rust-glib-sys-devel rust-gstreamer-devel # Qobuz player dependencies
+dnf5 install -yq rust-glib-sys-devel rust-gstreamer-devel # Qobuz player dependencies
 # cargo install --root /usr --locked --git https://github.com/sofusa/qobuz-player 
 wget https://github.com/SofusA/qobuz-player/releases/latest/download/qobuz-player-x86_64-unknown-linux-gnu.tar.gz
 tar -xf qobuz-player-x86_64-unknown-linux-gnu.tar.gz
