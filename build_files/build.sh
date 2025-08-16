@@ -111,23 +111,23 @@ mv lazyjj /usr/bin
 rm lazyjj*tar.gz
 
 # Helix
-# cargo install --root /usr --git https://github.com/nik-rev/patchy
-# git config --global user.email "you@example.com"
-# git config --global user.name "Your Name"
+cargo install --root /usr --git https://github.com/nik-rev/patchy
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
 dnf5 install -yq clang
 export HELIX_DEFAULT_RUNTIME=/usr/lib/helix/runtime
 mkdir -p "$HELIX_DEFAULT_RUNTIME"
-git clone -b pull-diagnostics https://github.com/SofusA/helix-pull-diagnostics.git
-# git clone https://github.com/SofusA/helix-driver
-# cd helix-driver
-cd helix-pull-diagnostics
-# patchy run --confirm yes
+# git clone -b pull-diagnostics https://github.com/SofusA/helix-pull-diagnostics.git
+git clone https://github.com/SofusA/helix-driver
+cd helix-driver
+# cd helix-pull-diagnostics
+patchy run --confirm yes
 cargo build --profile opt --locked
 cp -r runtime /usr/lib/helix/
 cp target/opt/hx /usr/bin/hx
 cd ..
-rm -rf helix-pull-diagnostics
-# rm -rf helix-dirver
+# rm -rf helix-pull-diagnostics
+rm -rf helix-dirver
 
 # Desktop
 dnf5 -y copr enable yalter/niri-git
