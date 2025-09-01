@@ -9,6 +9,8 @@ mkdir -p $(realpath /usr/local)
 dnf5 -y copr enable scottames/ghostty
 dnf5 install -yq ghostty
 
+dnf5 -y install $(curl -s https://api.github.com/repos/raphamorim/rio/releases/latest | jq -r '.assets[] | select(.name | test("^rioterm-.*x86_64_wayland.rpm$")).browser_download_url')
+
 # Node
 dnf5 install -yq npm
 npm config --global set prefix "/usr"
