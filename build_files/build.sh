@@ -139,7 +139,7 @@ dnf5 install -yq rustup
 dnf5 -y autoremove
 
 # Qobuz player
-dnf5 install -yq rust-glib-sys-devel rust-gstreamer-devel # Qobuz player dependencies
+dnf5 install -yq rust-glib-sys-devel rust-gstreamer-devel rust-alsa-sys-devel # Qobuz player dependencies
 # cargo install --root /usr --locked --git https://github.com/sofusa/qobuz-player 
 wget https://github.com/SofusA/qobuz-player/releases/latest/download/qobuz-player-x86_64-unknown-linux-gnu.tar.gz
 tar -xf qobuz-player-x86_64-unknown-linux-gnu.tar.gz
