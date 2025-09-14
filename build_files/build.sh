@@ -105,10 +105,10 @@ dnf5 install -yq git-credential-manager
 dnf5 install -yq gh meld
 cargo binstall -yq --root /usr --strategies crate-meta-data jj-cli
 
-wget $(curl -s https://api.github.com/repos/Cretezy/lazyjj/releases/latest | jq -r '.assets[] | select(.name | test(".*linux")).browser_download_url')
-tar -xf lazyjj*tar.gz
-mv lazyjj /usr/bin
-rm lazyjj*tar.gz
+# wget $(curl -s https://api.github.com/repos/Cretezy/lazyjj/releases/latest | jq -r '.assets[] | select(.name | test(".*linux")).browser_download_url')
+# tar -xf lazyjj*tar.gz
+# mv lazyjj /usr/bin
+# rm lazyjj*tar.gz
 
 # Helix
 cargo install --root /usr --git https://github.com/nik-rev/patchy
