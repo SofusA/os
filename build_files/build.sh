@@ -17,7 +17,7 @@ npm config --global set prefix "/usr"
 dnf5 install -yq cargo rust-analyzer rustfmt clippy
 
 export CARGO_HOME=/tmp/cargo
-mkdir -p "$CARGO_HOME"
+mkdir -p "$CARGO_HOME/bin"
  
 # Steel
 # dnf5 install -yq rust-openssl-sys-devel
