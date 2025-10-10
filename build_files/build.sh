@@ -18,6 +18,28 @@ dnf5 install -yq cargo rust-analyzer rustfmt clippy
 
 export CARGO_HOME=/tmp/cargo
 mkdir -p "$CARGO_HOME/bin"
+PATH="$PATH:$CARGO_HOME/bin"
+ 
+# Helix
+dnf5 install -yq rust-openssl-sys-devel
+cargo install --root /usr --git https://github.com/nik-rev/patchy
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+dnf5 install -yq clang
+export HELIX_DEFAULT_RUNTIME=/usr/lib/helix/runtime
+mkdir -p "$HELIX_DEFAULT_RUNTIME"
+git clone https://github.com/SofusA/helix-driver
+cd helix-driver
+patchy run --confirm yes
+OPENSSL_NO_VENDOR=true cargo xtask steel
+cp -r runtime /usr/lib/helix/
+cp $CARGO_HOME/bin/hx /usr/bin/hx
+cp $CARGO_HOME/bin/forge /usr/bin/forge
+
+ls $CARGO_HOME/bin
+
+cd ..
+rm -rf helix-driver
  
 # Steel
 # dnf5 install -yq rust-openssl-sys-devel
@@ -109,25 +131,6 @@ cargo binstall -yq --root /usr --strategies crate-meta-data jj-cli
 # tar -xf lazyjj*tar.gz
 # mv lazyjj /usr/bin
 # rm lazyjj*tar.gz
-
-# Helix
-cargo install --root /usr --git https://github.com/nik-rev/patchy
-git config --global user.email "you@example.com"
-git config --global user.name "Your Name"
-dnf5 install -yq clang
-export HELIX_DEFAULT_RUNTIME=/usr/lib/helix/runtime
-mkdir -p "$HELIX_DEFAULT_RUNTIME"
-# git clone -b pull-diagnostics https://github.com/SofusA/helix-pull-diagnostics.git
-git clone https://github.com/SofusA/helix-driver
-cd helix-driver
-# cd helix-pull-diagnostics
-patchy run --confirm yes
-cargo build --profile opt --locked
-cp -r runtime /usr/lib/helix/
-cp target/opt/hx /usr/bin/hx
-cd ..
-# rm -rf helix-pull-diagnostics
-rm -rf helix-dirver
 
 # Desktop
 dnf5 -y copr enable yalter/niri-git
