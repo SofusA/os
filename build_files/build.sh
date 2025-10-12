@@ -20,40 +20,6 @@ export CARGO_HOME=/tmp/cargo
 mkdir -p "$CARGO_HOME/bin"
 PATH="$PATH:$CARGO_HOME/bin"
  
-# Helix
-dnf5 install -yq rust-openssl-sys-devel
-cargo install --root /usr --git https://github.com/nik-rev/patchy
-git config --global user.email "you@example.com"
-git config --global user.name "Your Name"
-dnf5 install -yq clang
-export HELIX_DEFAULT_RUNTIME=/usr/lib/helix/runtime
-mkdir -p "$HELIX_DEFAULT_RUNTIME"
-git clone https://github.com/SofusA/helix-driver
-cd helix-driver
-patchy run --confirm yes
-OPENSSL_NO_VENDOR=true cargo xtask steel
-cp -r runtime /usr/lib/helix/
-cp $CARGO_HOME/bin/hx /usr/bin/hx
-cp $CARGO_HOME/bin/forge /usr/bin/forge
-
-ls $CARGO_HOME/bin
-
-cd ..
-rm -rf helix-driver
- 
-# Steel
-# dnf5 install -yq rust-openssl-sys-devel
-# git clone https://github.com/mattwparas/steel.git
-# cd steel
-# cargo install --root /usr --path .
-# cargo install --root /usr --path crates/steel-language-server
-# cargo install --root /usr --path crates/cargo-steel-lib
-# OPENSSL_NO_VENDOR=1 cargo install --root /usr --path crates/forge
-# cd cogs
-# cargo run -- install.scm
-# cd ../..
-# rm -rf steel
-
 # cli-dungeon
 # wget https://github.com/SofusA/cli-dungeon/releases/latest/download/cli-dungeon-x86_64-unknown-linux-gnu.tar.gz
 # tar -xf cli-dungeon-x86_64-unknown-linux-gnu.tar.gz
@@ -78,7 +44,6 @@ unzip csharp-language-server-x86_64-unknown-linux-gnu.zip
 mv csharp-language-server /usr/bin
 rm csharp-language-server-x86_64-unknown-linux-gnu.zip 
 mkdir -p /usr/lib/csharp-language-server
-# cargo install --root /usr --git https://github.com/SofusA/csharp-language-server
 csharp-language-server --download --directory /usr/lib/csharp-language-server
 
 # vscode
@@ -132,6 +97,22 @@ cargo binstall -yq --root /usr --strategies crate-meta-data jj-cli
 # mv lazyjj /usr/bin
 # rm lazyjj*tar.gz
 
+# Helix
+cargo install --root /usr --git https://github.com/nik-rev/patchy
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+dnf5 install -yq clang
+export HELIX_DEFAULT_RUNTIME=/usr/lib/helix/runtime
+mkdir -p "$HELIX_DEFAULT_RUNTIME"
+git clone https://github.com/SofusA/helix-driver
+cd helix-driver
+patchy run --confirm yes
+cargo build --profile opt --locked
+cp -r runtime /usr/lib/helix/
+cp target/opt/hx /usr/bin/hx
+cd ..
+rm -rf helix-driver
+
 # Desktop
 dnf5 -y copr enable yalter/niri-git
 dnf5 install -yq niri wl-clipboard swayidle mako
@@ -143,7 +124,6 @@ dnf5 -y autoremove
 
 # Qobuz player
 dnf5 install -yq rust-glib-sys-devel rust-gstreamer-devel rust-alsa-sys-devel # Qobuz player dependencies
-# cargo install --root /usr --locked --git https://github.com/sofusa/qobuz-player 
 wget https://github.com/SofusA/qobuz-player/releases/latest/download/qobuz-player-x86_64-unknown-linux-gnu.tar.gz
 tar -xf qobuz-player-x86_64-unknown-linux-gnu.tar.gz
 mv qobuz-player /usr/bin
